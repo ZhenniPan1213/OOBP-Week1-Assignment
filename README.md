@@ -10,3 +10,6 @@ Clone the repository to your local machine and execute `npm install` in the loca
 
 ## Run Tests
 Validate your solutions in week1.js by executing `npm run test`
+
+## guidance on npm installation on VS 
+steps 
