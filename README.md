@@ -17,7 +17,7 @@ git .add
 git commit -m "message you add"
 git push origin
 ### submit with Visual Studio Code built-in features
-![vscode commit & push](https://imgur.com/Dzn3OR7)
+![vscode commit & push](https://i.imgur.com/vscode-submit.png)
 
 
 ## guidance on npm installation on VS 
