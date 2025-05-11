@@ -258,7 +258,7 @@ describe("getLargestPopulationString", () => {
     );
   });
 
-  test("get the largest population string with opposite order of parameters", () => {
+  test("get the largest population string with different order of parameters", () => {
     const city1: City = {
       name: "Tokyo",
       population: 37400068,
@@ -282,7 +282,7 @@ describe("getLargestPopulationString", () => {
       );
     });
 
-    test("get the largest population string with opposite order of parameters", () => {
+    test("get the largest population string with different order of parameters", () => {
       const city1: City = {
         name: "Amsterdam",
         population: 821000,
