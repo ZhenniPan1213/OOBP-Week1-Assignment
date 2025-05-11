@@ -131,6 +131,18 @@ export function getLargestPopulationString(city1: City, city2: City, city3: City
 }
 
 
+export function getPopulationOrder(city1: City, city2: City, city3: City): string {
+  // Create an array of cities
+  const cities = [city1, city2, city3];
+  
+  // Sort cities by population in descending order
+  cities.sort((a, b) => b.population - a.population);
+  
+  // Return a string with city names in order
+  return `${cities[0].name} > ${cities[1].name} > ${cities[2].name}`;
+}
+
+
 module.exports = {
   calculator,
   createPerson,
@@ -141,4 +153,5 @@ module.exports = {
   getLargerPopulation,
   getLargerPopulationString,
   getLargestPopulationString,
+  getPopulationOrder,
 };

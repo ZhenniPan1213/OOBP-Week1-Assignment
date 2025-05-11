@@ -309,6 +309,86 @@ describe("getLargestPopulationString", () => {
   });
 
 
+  describe("getPopulationOrder", () => {
+    test("order by population (Tokyo > Philadelphia > Amsterdam)", () => {
+      const city1: City = {
+        name: "Amsterdam",
+        population: 821000,
+        country: "Netherlands",
+        isCapital: true,
+      };
+      const city2: City = {
+        name: "Philadelphia",
+        population: 1576000,
+        country: "USA",
+        isCapital: false,
+      };
+      const city3: City = {
+        name: "Tokyo",
+        population: 37400068,
+        country: "Japan",
+        isCapital: true,
+      };
+      expect(week1.getPopulationOrder(city1, city2, city3)).toBe(
+        "Tokyo > Philadelphia > Amsterdam"
+      );
+    });
+    
+    test("test with different order of parameters", () => {
+      const city1: City = {
+        name: "Tokyo",
+        population: 37400068,
+        country: "Japan",
+        isCapital: true,
+      };
+      const city2: City = {
+        name: "Amsterdam",
+        population: 821000,
+        country: "Netherlands",
+        isCapital: true,
+      };
+      const city3: City = {
+        name: "Philadelphia",
+        population: 1576000,
+        country: "USA",
+        isCapital: false,
+      };
+      expect(week1.getPopulationOrder(city1, city2, city3)).toBe(
+        "Tokyo > Philadelphia > Amsterdam"
+      );
+    });
+  
+    test("test with different order of parameters", () => {
+        const city1: City = {
+          name: "Amsterdam",
+          population: 821000,
+          country: "Netherlands",
+          isCapital: true,
+        };
+        const city2: City = {
+          name: "Tokyo",
+          population: 37400068,
+          country: "Japan",
+          isCapital: true,
+        };
+        const city3: City = {
+          name: "Philadelphia",
+          population: 1576000,
+          country: "USA",
+          isCapital: false,
+        };
+        expect(week1.getPopulationOrder(city1, city2, city3)).toBe(
+          "Tokyo > Philadelphia > Amsterdam"
+        );
+    });
+  
+    });
+
+
+
+
+
+
 
 
 
