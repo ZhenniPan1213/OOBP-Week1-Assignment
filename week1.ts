@@ -96,13 +96,26 @@ export function getCountryName(city: City): string {
 }
 
 /* Task 7 - Write a function, which takes two parameters. Both parameters are of the same city object type as the function in Task 4.
+The function should return the result which indicates whether the two cities are within the same country.
+*/
+export function withinSameCountry(city1: City, city2: City): string {
+  // Check if both cities are in the same country
+  if (city1.country === city2.country) {
+    return `${city1.name} and ${city2.name} are within the same country`;
+  }
+  return `${city1.name} and ${city2.name} are not within the same country`;
+}
+
+
+/* Task 8 - Write a function, which takes two parameters. Both parameters are of the same city object type as the function in Task 4.
 The function should return the city with the larger population.
 */
 export function getLargerPopulation(city1: City, city2: City): City {
   return city1.population > city2.population ? city1 : city2;
 }
 
-/* Task 8 - Write a function, which takes the same parameters as the function in Task 7.
+
+/* Task 9 - Write a function, which takes the same parameters as the function in Task 7.
 The function should return a string in the following format:
 "<name of the city with larger population> has larger population than <name of the city with smaller population>"
 */
@@ -143,6 +156,8 @@ export function getPopulationOrder(city1: City, city2: City, city3: City): strin
 }
 
 
+
+
 module.exports = {
   calculator,
   createPerson,
@@ -150,6 +165,7 @@ module.exports = {
   cityNameAndPopulationToString,
   isCapital,
   getCountryName,
+  withinSameCountry,
   getLargerPopulation,
   getLargerPopulationString,
   getLargestPopulationString,

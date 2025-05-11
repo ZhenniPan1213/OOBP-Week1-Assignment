@@ -160,6 +160,43 @@ describe("getCountryName", () => {
   });
 });
 
+describe("withinSameCountry", () => {
+  test("whether the two cities within the same country", () => {
+    const amsterdam: City = {
+      name: "Amsterdam",
+      population: 821000,
+      isCapital: true,
+      country: "Netherlands",
+    };
+    const philadelphia: City = {
+      name: "Philadelphia",
+      population: 1576000,
+      isCapital: false,
+      country: "USA",
+    };
+    expect(week1.withinSameCountry(amsterdam, philadelphia)).toBe(
+      "Amsterdam and Philadelphia are not within the same country");
+    });
+
+  test("whether the two cities within the same country", () => {
+    const amsterdam: City = {
+      name: "Tokyo",
+      population: 37400068,
+      isCapital: true,
+      country: "Japan",
+    };
+    const amsterdam2: City = {
+      name: "Kyoto",
+      population: 1474570,
+      isCapital: false,
+      country: "Japan",
+    };
+    expect(week1.withinSameCountry(amsterdam, amsterdam2)).toBe(
+      "Tokyo and Kyoto are within the same country");
+    });
+  });
+
+
 describe("getLargerPopulation", () => {
   test("get larger population", () => {
     const amsterdam: City = {
