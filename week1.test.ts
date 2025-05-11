@@ -231,3 +231,87 @@ describe("getLargerPopulationString", () => {
     );
   });
 });
+
+
+describe("getLargestPopulationString", () => {
+  test("get the largest population string", () => {
+  const city1: City = {
+    name: "Amsterdam",
+    population: 821000,
+    country: "Netherlands",
+    isCapital: true,
+  };
+  const city2: City = {
+    name: "Philadelphia",
+    population: 1576000,
+    country: "USA",
+    isCapital: false,
+  };
+  const city3: City = {
+    name: "Tokyo",
+    population: 37400068,
+    country: "Japan",
+    isCapital: true,
+  };
+    expect(week1.getLargestPopulationString(city1, city2, city3)).toBe(
+      "Tokyo has the largest population"
+    );
+  });
+
+  test("get the largest population string with opposite order of parameters", () => {
+    const city1: City = {
+      name: "Tokyo",
+      population: 37400068,
+      country: "Japan",
+      isCapital: true,
+    };
+    const city2: City = {
+      name: "Amsterdam",
+      population: 821000,
+      country: "Netherlands",
+      isCapital: true,
+    };
+    const city3: City = {
+      name: "Philadelphia",
+      population: 1576000,
+      country: "USA",
+      isCapital: false,
+    };
+    expect(week1.getLargestPopulationString(city1, city2, city3)).toBe(
+        "Tokyo has the largest population"
+      );
+    });
+
+    test("get the largest population string with opposite order of parameters", () => {
+      const city1: City = {
+        name: "Amsterdam",
+        population: 821000,
+        country: "Netherlands",
+        isCapital: true,
+      };
+      const city2: City = {
+        name: "Tokyo",
+        population: 37400068,
+        country: "Japan",
+        isCapital: true,
+      };
+      const city3: City = {
+        name: "Philadelphia",
+        population: 1576000,
+        country: "USA",
+        isCapital: false,
+      };
+      expect(week1.getLargestPopulationString(city1, city2, city3)).toBe(
+          "Tokyo has the largest population"
+        );
+      });
+
+  });
+
+
+
+
+
+
+
+

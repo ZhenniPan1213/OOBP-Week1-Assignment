@@ -116,6 +116,21 @@ export function getLargerPopulationString(city1: City, city2: City): string {
 The export is used to make the functions available to the tests. With this same logic, you 
 can also import these functions in other files.
 */
+export function getLargestPopulationString(city1: City, city2: City, city3: City ): string {
+
+  let largerCity = city1;
+
+  if (city2.population > largerCity.population) {
+    largerCity = city2;
+  }
+  if (city3.population > largerCity.population) {
+    largerCity = city3;
+  }
+
+  return `${largerCity.name} has the largest population`;
+}
+
+
 module.exports = {
   calculator,
   createPerson,
@@ -125,4 +140,5 @@ module.exports = {
   getCountryName,
   getLargerPopulation,
   getLargerPopulationString,
+  getLargestPopulationString,
 };
