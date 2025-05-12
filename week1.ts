@@ -116,13 +116,13 @@ export function getLargerPopulationString(city1: City, city2: City): string {
 The export is used to make the functions available to the tests. With this same logic, you 
 can also import these functions in other files.
 */
-module.exports = {
+/* module.exports = {
   calculator,
   createPerson,
-  personToString,
+  personToString,¬
   cityNameAndPopulationToString,
   isCapital,
   getCountryName,
   getLargerPopulation,
   getLargerPopulationString,
-};
+}; */
