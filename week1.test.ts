@@ -16,6 +16,12 @@ interface City {
   country: string;
 }
 
+interface Country {
+  name: string;
+  cities: City[];
+}
+
+
 /* Create test cases for the functions in week1.ts using Jest */
 describe("calculator", () => {
   test("add with positive values", () => {
@@ -418,6 +424,39 @@ describe("getLargestPopulationString", () => {
           "Tokyo > Philadelphia > Amsterdam"
         );
     });
+
+
+  describe('printCityWithHighestPopulation', () => {
+    test('should print and return city with highest population', () => {
+      const city1: City = {
+        name: 'New York',
+        population: 8336000,
+        isCapital: false,
+        country: "USA",
+      };
+
+      const city2: City = {
+        name: 'Washington, D.C.',
+        population: 705749,
+        isCapital: true,
+        country: "USA",
+      };
+
+      const city3: City = {
+        name: 'Los Angeles',
+        population: 3898747,
+        isCapital: false,
+        country: "USA",
+      };
+
+      const country: Country = {
+        name: 'USA',
+        cities: [city1, city2, city3],
+      };
+
+      expect(week1.printCityWithHighestPopulation(country)).toBe('New York has the largest population');
+    });
+  });
   
     });
 

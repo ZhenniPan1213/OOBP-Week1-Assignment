@@ -14,6 +14,11 @@ export interface City {
   isCapital: boolean;
 }
 
+interface Country {
+  name: string;
+  cities: City[];
+}
+
 /* Task 1 - Fix the function below. It should operate as a calculator, 
 which takes two numbers and an operator as arguments, and returns the result of the operation. 
 
@@ -156,9 +161,27 @@ export function getPopulationOrder(city1: City, city2: City, city3: City): strin
 }
 
 
+// Function to print and return the city with the highest population
+export function printCityWithHighestPopulation(country: Country): string {
+  // Find city with highest population
+  let highestCity = country.cities[0];
+  let maxPopulation = highestCity.population!;
+
+  for (const city of country.cities) {
+    if (city.population! > maxPopulation) {
+      highestCity = city;
+      maxPopulation = city.population!;
+    }
+  }
+
+  // Print and return the highest-population city
+  return `${highestCity.name} has the largest population`
+}
 
 
-module.exports = {
+
+
+/* module.exports = {
   calculator,
   createPerson,
   personToString,
@@ -170,4 +193,4 @@ module.exports = {
   getLargerPopulationString,
   getLargestPopulationString,
   getPopulationOrder,
-};
+}; */
