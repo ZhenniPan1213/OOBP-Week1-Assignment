@@ -16,9 +16,14 @@ interface City {
   country: string;
 }
 
-interface Country {
+interface Coach {
   name: string;
-  cities: City[];
+  passengers: number;
+}
+
+interface Train {
+  name: string;
+  coaches: Coach[];
 }
 
 
@@ -426,37 +431,56 @@ describe("getLargestPopulationString", () => {
     });
 
 
-  describe('printCityWithHighestPopulation', () => {
-    test('should print and return city with highest population', () => {
-      const city1: City = {
-        name: 'New York',
-        population: 8336000,
-        isCapital: false,
-        country: "USA",
-      };
 
-      const city2: City = {
-        name: 'Washington, D.C.',
-        population: 705749,
-        isCapital: true,
-        country: "USA",
-      };
-
-      const city3: City = {
-        name: 'Los Angeles',
-        population: 3898747,
-        isCapital: false,
-        country: "USA",
-      };
-
-      const country: Country = {
-        name: 'USA',
-        cities: [city1, city2, city3],
-      };
-
-      expect(week1.printCityWithHighestPopulation(country)).toBe('New York has the largest population');
-    });
+describe('findCoachWithMostPassengers', () => {
+  test('should return coach with highest passenger count', () => {
+    const train: Train = {
+      name: 'Express 101',
+      coaches: [
+        { name: 'Coach A', passengers: 50 },
+        { name: 'Coach B', passengers: 75 },
+        { name: 'Coach C', passengers: 30 }
+      ]
+    };
+    
+    const result = week1.findCoachWithMostPassengers(train);
+    expect(result).toEqual({ name: 'Coach B', passengers: 75 });
   });
+
+  test('should return null for empty coaches array', () => {
+    const train: Train = {
+      name: 'Empty Express',
+      coaches: []
+    };
+    
+    const result = week1.findCoachWithMostPassengers(train);
+    expect(result).toBeNull();
+  });
+
+  test('should handle single coach', () => {
+    const train: Train = {
+      name: 'Single Coach Express',
+      coaches: [{ name: 'Coach A', passengers: 40 }]
+    };
+    
+    const result = week1.findCoachWithMostPassengers(train);
+    expect(result).toEqual({ name: 'Coach A', passengers: 40 });
+  });
+
+  test('should handle multiple coaches with same passenger count', () => {
+    const train: Train = {
+      name: 'Equal Express',
+      coaches: [
+        { name: 'Coach A', passengers: 50 },
+        { name: 'Coach B', passengers: 50 },
+        { name: 'Coach C', passengers: 50 }
+      ]
+    };
+    
+    const result = week1.findCoachWithMostPassengers(train);
+    expect(result).toEqual({ name: 'Coach A', passengers: 50 });
+  });
+});
   
     });
 

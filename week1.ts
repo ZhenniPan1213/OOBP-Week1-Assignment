@@ -14,9 +14,15 @@ export interface City {
   isCapital: boolean;
 }
 
-interface Country {
+
+export interface Coach {
   name: string;
-  cities: City[];
+  passengers: number;
+}
+
+export interface Train {
+  name: string;
+  coaches: Coach[];
 }
 
 /* Task 1 - Fix the function below. It should operate as a calculator, 
@@ -162,35 +168,16 @@ export function getPopulationOrder(city1: City, city2: City, city3: City): strin
 
 
 // Function to print and return the city with the highest population
-export function printCityWithHighestPopulation(country: Country): string {
-  // Find city with highest population
-  let highestCity = country.cities[0];
-  let maxPopulation = highestCity.population!;
-
-  for (const city of country.cities) {
-    if (city.population! > maxPopulation) {
-      highestCity = city;
-      maxPopulation = city.population!;
-    }
+export function findCoachWithMostPassengers(train: Train): Coach | null {
+  if (!train.coaches || train.coaches.length === 0) {
+    return null;
   }
-
-  // Print and return the highest-population city
-  return `${highestCity.name} has the largest population`
+  
+  return train.coaches.reduce((maxCoach, currentCoach) => 
+    currentCoach.passengers > maxCoach.passengers ? currentCoach : maxCoach
+  );
 }
+ 
+// train 
+// coach/car passengers highest passengers
 
-
-
-
-/* module.exports = {
-  calculator,
-  createPerson,
-  personToString,
-  cityNameAndPopulationToString,
-  isCapital,
-  getCountryName,
-  withinSameCountry,
-  getLargerPopulation,
-  getLargerPopulationString,
-  getLargestPopulationString,
-  getPopulationOrder,
-}; */
