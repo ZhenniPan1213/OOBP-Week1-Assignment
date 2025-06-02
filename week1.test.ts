@@ -16,6 +16,17 @@ interface City {
   country: string;
 }
 
+interface Coach {
+  name: string;
+  passengers: number;
+}
+
+interface Train {
+  name: string;
+  coaches: Coach[];
+}
+
+
 /* Create test cases for the functions in week1.ts using Jest */
 describe("calculator", () => {
   test("add with positive values", () => {
@@ -160,6 +171,43 @@ describe("getCountryName", () => {
   });
 });
 
+describe("withinSameCountry", () => {
+  test("whether the two cities within the same country", () => {
+    const amsterdam: City = {
+      name: "Amsterdam",
+      population: 821000,
+      isCapital: true,
+      country: "Netherlands",
+    };
+    const philadelphia: City = {
+      name: "Philadelphia",
+      population: 1576000,
+      isCapital: false,
+      country: "USA",
+    };
+    expect(week1.withinSameCountry(amsterdam, philadelphia)).toBe(
+      "Amsterdam and Philadelphia are not within the same country");
+    });
+
+  test("whether the two cities within the same country", () => {
+    const amsterdam: City = {
+      name: "Tokyo",
+      population: 37400068,
+      isCapital: true,
+      country: "Japan",
+    };
+    const amsterdam2: City = {
+      name: "Kyoto",
+      population: 1474570,
+      isCapital: false,
+      country: "Japan",
+    };
+    expect(week1.withinSameCountry(amsterdam, amsterdam2)).toBe(
+      "Tokyo and Kyoto are within the same country");
+    });
+  });
+
+
 describe("getLargerPopulation", () => {
   test("get larger population", () => {
     const amsterdam: City = {
@@ -231,3 +279,219 @@ describe("getLargerPopulationString", () => {
     );
   });
 });
+
+
+describe("getLargestPopulationString", () => {
+  test("get the largest population string", () => {
+  const city1: City = {
+    name: "Amsterdam",
+    population: 821000,
+    country: "Netherlands",
+    isCapital: true,
+  };
+  const city2: City = {
+    name: "Philadelphia",
+    population: 1576000,
+    country: "USA",
+    isCapital: false,
+  };
+  const city3: City = {
+    name: "Tokyo",
+    population: 37400068,
+    country: "Japan",
+    isCapital: true,
+  };
+    expect(week1.getLargestPopulationString(city1, city2, city3)).toBe(
+      "Tokyo has the largest population"
+    );
+  });
+
+  test("get the largest population string with different order of parameters", () => {
+    const city1: City = {
+      name: "Tokyo",
+      population: 37400068,
+      country: "Japan",
+      isCapital: true,
+    };
+    const city2: City = {
+      name: "Amsterdam",
+      population: 821000,
+      country: "Netherlands",
+      isCapital: true,
+    };
+    const city3: City = {
+      name: "Philadelphia",
+      population: 1576000,
+      country: "USA",
+      isCapital: false,
+    };
+    expect(week1.getLargestPopulationString(city1, city2, city3)).toBe(
+        "Tokyo has the largest population"
+      );
+    });
+
+    test("get the largest population string with different order of parameters", () => {
+      const city1: City = {
+        name: "Amsterdam",
+        population: 821000,
+        country: "Netherlands",
+        isCapital: true,
+      };
+      const city2: City = {
+        name: "Tokyo",
+        population: 37400068,
+        country: "Japan",
+        isCapital: true,
+      };
+      const city3: City = {
+        name: "Philadelphia",
+        population: 1576000,
+        country: "USA",
+        isCapital: false,
+      };
+      expect(week1.getLargestPopulationString(city1, city2, city3)).toBe(
+          "Tokyo has the largest population"
+        );
+      });
+
+  });
+
+
+  describe("getPopulationOrder", () => {
+    test("order by population (Tokyo > Philadelphia > Amsterdam)", () => {
+      const city1: City = {
+        name: "Amsterdam",
+        population: 821000,
+        country: "Netherlands",
+        isCapital: true,
+      };
+      const city2: City = {
+        name: "Philadelphia",
+        population: 1576000,
+        country: "USA",
+        isCapital: false,
+      };
+      const city3: City = {
+        name: "Tokyo",
+        population: 37400068,
+        country: "Japan",
+        isCapital: true,
+      };
+      expect(week1.getPopulationOrder(city1, city2, city3)).toBe(
+        "Tokyo > Philadelphia > Amsterdam"
+      );
+    });
+    
+    test("test with different order of parameters", () => {
+      const city1: City = {
+        name: "Tokyo",
+        population: 37400068,
+        country: "Japan",
+        isCapital: true,
+      };
+      const city2: City = {
+        name: "Amsterdam",
+        population: 821000,
+        country: "Netherlands",
+        isCapital: true,
+      };
+      const city3: City = {
+        name: "Philadelphia",
+        population: 1576000,
+        country: "USA",
+        isCapital: false,
+      };
+      expect(week1.getPopulationOrder(city1, city2, city3)).toBe(
+        "Tokyo > Philadelphia > Amsterdam"
+      );
+    });
+  
+    test("test with different order of parameters", () => {
+        const city1: City = {
+          name: "Amsterdam",
+          population: 821000,
+          country: "Netherlands",
+          isCapital: true,
+        };
+        const city2: City = {
+          name: "Tokyo",
+          population: 37400068,
+          country: "Japan",
+          isCapital: true,
+        };
+        const city3: City = {
+          name: "Philadelphia",
+          population: 1576000,
+          country: "USA",
+          isCapital: false,
+        };
+        expect(week1.getPopulationOrder(city1, city2, city3)).toBe(
+          "Tokyo > Philadelphia > Amsterdam"
+        );
+    });
+
+
+
+describe('findCoachWithMostPassengers', () => {
+  test('should return coach with highest passenger count', () => {
+    const train: Train = {
+      name: 'Express 101',
+      coaches: [
+        { name: 'Coach A', passengers: 50 },
+        { name: 'Coach B', passengers: 75 },
+        { name: 'Coach C', passengers: 30 }
+      ]
+    };
+    
+    const result = week1.findCoachWithMostPassengers(train);
+    expect(result).toEqual({ name: 'Coach B', passengers: 75 });
+  });
+
+  test('should return null for empty coaches array', () => {
+    const train: Train = {
+      name: 'Empty Express',
+      coaches: []
+    };
+    
+    const result = week1.findCoachWithMostPassengers(train);
+    expect(result).toBeNull();
+  });
+
+  test('should handle single coach', () => {
+    const train: Train = {
+      name: 'Single Coach Express',
+      coaches: [{ name: 'Coach A', passengers: 40 }]
+    };
+    
+    const result = week1.findCoachWithMostPassengers(train);
+    expect(result).toEqual({ name: 'Coach A', passengers: 40 });
+  });
+
+  test('should handle multiple coaches with same passenger count', () => {
+    const train: Train = {
+      name: 'Equal Express',
+      coaches: [
+        { name: 'Coach A', passengers: 50 },
+        { name: 'Coach B', passengers: 50 },
+        { name: 'Coach C', passengers: 50 }
+      ]
+    };
+    
+    const result = week1.findCoachWithMostPassengers(train);
+    expect(result).toEqual({ name: 'Coach A', passengers: 50 });
+  });
+});
+  
+    });
+
+
+
+
+
+
+
+
+
+
+
+

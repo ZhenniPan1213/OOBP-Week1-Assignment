@@ -14,6 +14,17 @@ export interface City {
   isCapital: boolean;
 }
 
+
+export interface Coach {
+  name: string;
+  passengers: number;
+}
+
+export interface Train {
+  name: string;
+  coaches: Coach[];
+}
+
 /* Task 1 - Fix the function below. It should operate as a calculator, 
 which takes two numbers and an operator as arguments, and returns the result of the operation. 
 
@@ -96,13 +107,26 @@ export function getCountryName(city: City): string {
 }
 
 /* Task 7 - Write a function, which takes two parameters. Both parameters are of the same city object type as the function in Task 4.
+The function should return the result which indicates whether the two cities are within the same country.
+*/
+export function withinSameCountry(city1: City, city2: City): string {
+  // Check if both cities are in the same country
+  if (city1.country === city2.country) {
+    return `${city1.name} and ${city2.name} are within the same country`;
+  }
+  return `${city1.name} and ${city2.name} are not within the same country`;
+}
+
+
+/* Task 8 - Write a function, which takes two parameters. Both parameters are of the same city object type as the function in Task 4.
 The function should return the city with the larger population.
 */
 export function getLargerPopulation(city1: City, city2: City): City {
   return city1.population > city2.population ? city1 : city2;
 }
 
-/* Task 8 - Write a function, which takes the same parameters as the function in Task 7.
+
+/* Task 9 - Write a function, which takes the same parameters as the function in Task 7.
 The function should return a string in the following format:
 "<name of the city with larger population> has larger population than <name of the city with smaller population>"
 */
@@ -111,4 +135,49 @@ export function getLargerPopulationString(city1: City, city2: City): string {
   const smallerCity = city1.population > city2.population ? city2 : city1;
   return `${largerCity.name} has larger population than ${smallerCity.name}`;
 }
+
+/* Export all the functions you have written above. 
+The export is used to make the functions available to the tests. With this same logic, you 
+can also import these functions in other files.
+*/
+export function getLargestPopulationString(city1: City, city2: City, city3: City ): string {
+
+  let largerCity = city1;
+
+  if (city2.population > largerCity.population) {
+    largerCity = city2;
+  }
+  if (city3.population > largerCity.population) {
+    largerCity = city3;
+  }
+
+  return `${largerCity.name} has the largest population`;
+}
+
+
+export function getPopulationOrder(city1: City, city2: City, city3: City): string {
+  // Create an array of cities
+  const cities = [city1, city2, city3];
+  
+  // Sort cities by population in descending order
+  cities.sort((a, b) => b.population - a.population);
+  
+  // Return a string with city names in order
+  return `${cities[0].name} > ${cities[1].name} > ${cities[2].name}`;
+}
+
+
+// Function to print and return the city with the highest population
+export function findCoachWithMostPassengers(train: Train): Coach | null {
+  if (!train.coaches || train.coaches.length === 0) {
+    return null;
+  }
+  
+  return train.coaches.reduce((maxCoach, currentCoach) => 
+    currentCoach.passengers > maxCoach.passengers ? currentCoach : maxCoach
+  );
+}
+ 
+// train 
+// coach/car passengers highest passengers
 
