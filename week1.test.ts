@@ -17,7 +17,7 @@ interface City {
 }
 
 interface Coach {
-  name: string;
+  coachNumber: number;
   passengers: number;
 }
 
@@ -381,6 +381,7 @@ describe("getLargestPopulationString", () => {
         "Tokyo > Philadelphia > Amsterdam"
       );
     });
+  });
     
     test("test with different order of parameters", () => {
       const city1: City = {
